@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        form{
+            background-color: rgb(158, 88, 88);
+        }
+        input[class="red"]{
+            background-color: red;
+            font-size: 20px;
+            width: 30px;
+        }
+        input[class="green"]{
+            background-color: green;
+            font-size: 20px;
+            width: 30px;
+        }
+        input[class="white"]{
+            background-color: white;
+            font-size: 20px;
+            width: 30px;
+        }
+        h1{
+            color: red;
+            width: 200px;
+        }
+        /* img{
+            height: 100px;
+            width: 75px;
+        } */
+        h1:hover{
+            color: aqua;
+        }
+    </style>
+</head>
+<body>
+<center>
+    <!-- <img src="asd.png" alt="Washing"> -->
+    <h1><u><b>CALCULATOR</b></u></h1>
+    <form name="calculator" style="height:250px; border:2px solid black; width:200px; border-radius: 10px;">
+        <input type="text" name="display" style="width:175px; height: 65px; text-align: right;"><br>
+        <input type="text" name="result1" style="width:40px; height: 30px"><br>
+        <input type="button" class="red" value="clr" onclick="cleara()">
+        <input type="button" class="green" value="%" name="btnper" onclick="displaydata('%')">
+        <input type="button" class="green" value="/" name="btndiv" onclick="displaydata('/')"><br>
+        <input type="button" class="white" value="9" name="btn9" onclick="displaydata(9)">
+        <input type="button" class="white" value="8" name="btn8" onclick="displaydata(8)">
+        <input type="button" class="white" value="7" name="btn7" onclick="displaydata(7)">
+        <input type="button" class="green" value="+" name="btnplus" onclick="displaydata('+')"><br>
+        <input type="button" class="white" value="6" name="btn6" onclick="displaydata(6)">
+        <input type="button" class="white" value="5" name="btn5" onclick="displaydata(5)">
+        <input type="button" class="white" value="4" name="btn4" onclick="displaydata(4)">
+        <input type="button" class="green" value="-" name="btnsub" onclick="displaydata('-')"><br>
+        <input type="button" class="white" value="3" name="btn3" onclick="displaydata(3)">
+        <input type="button" class="white" value="2" name="btn2" onclick="displaydata(2)">
+        <input type="button" class="white" value="1" name="btn1" onclick="displaydata(1)">
+        <input type="button" class="green" value="*" name="btnmul" onclick="displaydata('*')"><br>
+        <input type="button" class="white" value="0" name="btn0" onclick="displaydata(0)">
+        <input type="button" class="white"value="." name="btnpoint" onclick="displaydata('.')">
+        <input type="button" class="green" value="=" onclick="result()">
+        
+    </form>
+</center>
+    <script>
+        function cleara(){
+            calculator.display.value="";
+        }
+        function displaydata(a){
+        calculator.display.value=calculator.display.value+a;
+        }
+        function result(){
+            calculator.result1.value=eval(calculator.display.value);
+        }
+    </script>
+</body>
+</html>

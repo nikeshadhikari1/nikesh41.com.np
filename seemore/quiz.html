@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+    <div class="app">
+        <h1>Simple Quiz</h1>
+        <form name="mydiv">
+            <p>Points: <span><input type="button" value="0" class="show" name="show"></span></p>
+            <p>Total No. Of Questions: <span><input type="button" value="0"name="total" class="total"> out of  5 </span></p>
+        </form>
+    <form name="myform">
+        <!-- <p>Points: <span><input type="button" class="show" name="show" value="0"></span></p>
+        <p>Total no. of Questions: <span><input type="button" class="total" name="total" value="0"></span> out of 5</p>-->
+        <input type="button" class="ques" value="question" name="ques"><br>
+        <input type="button" class="btn" value="option1"  name="btn1" onclick="checkans(1)"><br>
+        <input type="button" class="btn" value="option2"  name="btn2" onclick="checkans(2)"><br>
+        <input type="button" class="btn" value="option3" name="btn3" onclick="checkans(3)"><br>
+        <input type="button" class="btn" value="option4" name="btn4" onclick="checkans(4)"><br>
+        <input type="button" class="next" value="Next" name="next" onclick="changequestion()">
+    </form>
+    
+</div>
+    <script>
+        var ques=[
+            [" What is the height of MT.Everest?","8812m","8848km","8848m","8848cm","3"],
+            [" What is Nepal capital city?","Kathmandu","Pokhara","Biratnagar","Lumbini","1"],
+            [" What is Nepal largest city?","Kathmandu","Pokhara","Biratnagar","Lumbini","1"],
+            [" HTML stands for ?","Hyperactive Text Markup Language","HyperText Markup Language","Hyper Text Machine Language","None of Those","2"],
+            [" Which is the correct syntax to include comment in an HTML document?","//","/* Comment */","// Comment //","<!-- Comment -->","4"],
+        ];
+        i=0;
+        j=0;
+        t=0;
+        question();
+        function question(){
+            totalquestions();
+            var buttons = document.getElementsByClassName("btn");
+            for (var k=0;k<buttons.length;k++){
+                buttons[k].classList.remove('correct','wrong');
+            }
+            myform.ques.value="Q. "+ques[i][0];
+            myform.btn1.value="1. "+ques[i][1];
+            myform.btn2.value="2. "+ques[i][2];
+            myform.btn3.value="3. "+ques[i][3];
+            myform.btn4.value="4. "+ques[i][4];
+        }
+        function changequestion(){
+            i=i+1;
+            question();
+            // enable();
+        }
+        function checkans(a){
+            // disable();
+            // var selectbtn = document.getElementsByClassName('btn'+a)[0];
+            // var correctbtn = document.getElementsByClassName('btn'+ques[i][5])[0];
+            if(a==ques[i][5]){
+                show();
+                document.getElementsByName('btn'+a)[0].classList.add('correct');
+                // selectbtn.classList.add('correct');
+                // disable();
+                
+            }
+            else{
+                document.getElementsByName('btn'+a)[0].classList.add('wrong');
+                document.getElementsByName('btn'+ques[i][5])[0].classList.add('correct');
+                // selectbtn.classList.add('wrong');
+                // correctbtn.classList.add('correct');
+            }
+        }
+        function show(){
+            j=j+1;
+            // myform.show.value = j;
+            mydiv.show.value = j;
+        }
+        function totalquestions(){
+                t=t+1;
+                // myform.total.value = t;
+                mydiv.total.value = t;
+            }
+            function disable(){
+                var button =document.getElementsByClassName('btn').disabled=true;
+                for (var m = 0; m < button.length; m++) {
+                    button[m].disabled = true;
+                }
+            }
+            function enable(){
+                var button =document.getElementsByClassName("btn").disabled=false;
+                for (var m = 0; m < button.length; m++) {
+                button[m].disabled = false;
+                }
+            }
+    </script>
+</body>
+</html>

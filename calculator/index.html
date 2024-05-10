@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculator</title>
+</head>
+<body>
+    <center>
+<div id="header">Calculator</div>
+    <div class="container" name="cont">
+        <input type="text" name="dis">
+        <div class="buttons">
+            <div class="but-row">
+                <button onclick="cleara()">C</button>
+                <button onclick="back()">Del</button>
+                <button onclick="moveCursorRight()">-></button>
+                <button onclick="moveCursorLeft()"><-</button>
+            </div>
+            <div class="but-row">
+                <button onclick="displaydata(7)">7</button>
+                <button onclick="displaydata(8)">8</button>
+                <button onclick="displaydata(9)">9</button>
+                <button onclick="displaydata('*')">*</button>
+            </div>
+            <div class="but-row">
+                <button onclick="displaydata(4)">4</button>
+                <button onclick="displaydata(5)">5</button>
+                <button onclick="displaydata(6)">6</button>
+                <button onclick="displaydata('-')">-</button>
+            </div>
+            <div class="but-row">
+                <button onclick="displaydata(1)">1</button>
+                <button onclick="displaydata(2)">2</button>
+                <button onclick="displaydata(3)">3</button>
+                <button onclick="displaydata('+')">+</button>
+            </div>
+            <div class="but-row">
+                <button onclick="change()">+/-</button>
+                <button onclick="displaydata(0)">0</button>
+                <button onclick="displaydata('.')">.</button>
+                <button onclick="result()">=</button>
+            </div>
+        </div>
+            <div class="buttons1">
+                <div class="but-row">
+                    <button onclick="displaydata('()')">()</button>
+                    <button onclick="displaydata('sin')">sin</button>
+                    <button onclick="displaydata('cos')">cos</button>
+                    <button onclick="displaydata('/')">/</button>
+                </div>
+                <div class="but-row">
+                    <button onclick="displaydata('in')">in</button>
+                    <button onclick="displaydata('log')">log</button>
+                    <button onclick="displaydata('1/x')">1/x</button>
+                    <button onclick="displaydata('%')">%</button>
+                </div>
+                <div class="but-row">
+                    <button onclick="displaydata('e^x')">e^x</button>
+                    <button onclick="displaydata('x^2')">x^2</button>
+                    <button onclick="displaydata('x^y')">x^y</button>
+                    <button onclick="displaydata('-')">-</button>
+                </div>
+                <div class="but-row">
+                    <button onclick="displaydata('|x|')">|x|</button>
+                    <button onclick="displaydata('$')">$</button>
+                    <button onclick="displaydata('e')">e</button>
+                    <button onclick="displaydata('+')">+</button>
+                </div>
+                <div class="but-row">
+                    <button onclick="change()">+/-</button>
+                    <button onclick="displaydata('0')">0</button>
+                    <button onclick="displaydata('.')">.</button>
+                    <button onclick="result()">=</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    Created by: Nikesh Adhikari
+</div>
+</center>
+    <script src="script.js"></script>
+</body>
+</html>
