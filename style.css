@@ -51,6 +51,7 @@ nav ul li a::after{
 }
 nav ul li a:hover::after{
     width: 100%;
+    color: #ff004f;
 }
 .header-text{
     margin-top: 20%;
@@ -400,3 +401,4 @@ nav .fa-solid{
 #scrollUpBtn i{
     margin: auto;
 }
+
