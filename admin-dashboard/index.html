@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="icon" href="../image/logo.png" type="image/png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-cube"></i>
+                <span>AdminKit</span>
+            </div>
+            <button class="sidebar-close" id="sidebarClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-page="dashboard">
+                <i class="fas fa-th-large"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#" class="nav-item" data-page="orders">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Orders</span>
+            </a>
+            <a href="#" class="nav-item" data-page="users">
+                <i class="fas fa-users"></i>
+                <span>Users</span>
+            </a>
+            <a href="#" class="nav-item" data-page="products">
+                <i class="fas fa-box"></i>
+                <span>Products</span>
+            </a>
+            <a href="#" class="nav-item" data-page="analytics">
+                <i class="fas fa-chart-bar"></i>
+                <span>Analytics</span>
+            </a>
+            <a href="#" class="nav-item" data-page="settings">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="avatar">NA</div>
+                <div class="user-details">
+                    <span class="user-name">Nikesh Adhikari</span>
+                    <span class="user-role">Administrator</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Top Bar -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search anything..." id="globalSearch">
+                </div>
+            </div>
+            <div class="topbar-right">
+                <button class="theme-toggle" id="themeToggle" title="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="notification-btn" id="notifBtn">
+                    <i class="fas fa-bell"></i>
+                    <span class="notif-badge">3</span>
+                </button>
+                <div class="topbar-avatar">
+                    <div class="avatar-sm">NA</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard Page -->
+        <div class="page active" id="page-dashboard">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Dashboard</h1>
+                    <p class="page-subtitle">Welcome back, Nikesh! Here's what's happening.</p>
+                </div>
+                <div class="page-actions">
+                    <select class="form-select period-select" id="periodSelect">
+                        <option value="7">Last 7 Days</option>
+                        <option value="30" selected>Last 30 Days</option>
+                        <option value="90">Last 90 Days</option>
+                    </select>
+                    <button class="btn btn-primary-custom" id="exportBtn">
+                        <i class="fas fa-download"></i> Export
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card glass-card animate-in" data-delay="0">
+                    <div class="stat-icon revenue-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-label">Total Revenue</span>
+                        <span class="stat-value" id="revenueValue">$0</span>
+                        <span class="stat-change positive"><i class="fas fa-arrow-up"></i> 12.5% from last month</span>
+                    </div>
+                    <div class="stat-chart-mini" id="revenueMini"></div>
+                </div>
+                <div class="stat-card glass-card animate-in" data-delay="100">
+                    <div class="stat-icon orders-icon"><i class="fas fa-shopping-bag"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-label">Total Orders</span>
+                        <span class="stat-value" id="ordersValue">0</span>
+                        <span class="stat-change positive"><i class="fas fa-arrow-up"></i> 8.2% from last month</span>
+                    </div>
+                    <div class="stat-chart-mini" id="ordersMini"></div>
+                </div>
+                <div class="stat-card glass-card animate-in" data-delay="200">
+                    <div class="stat-icon users-icon"><i class="fas fa-user-plus"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-label">New Users</span>
+                        <span class="stat-value" id="usersValue">0</span>
+                        <span class="stat-change negative"><i class="fas fa-arrow-down"></i> 3.1% from last month</span>
+                    </div>
+                    <div class="stat-chart-mini" id="usersMini"></div>
+                </div>
+                <div class="stat-card glass-card animate-in" data-delay="300">
+                    <div class="stat-icon traffic-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-label">Traffic</span>
+                        <span class="stat-value" id="trafficValue">0</span>
+                        <span class="stat-change positive"><i class="fas fa-arrow-up"></i> 15.7% from last month</span>
+                    </div>
+                    <div class="stat-chart-mini" id="trafficMini"></div>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="charts-grid">
+                <div class="chart-card glass-card animate-in" data-delay="400">
+                    <div class="card-header-custom">
+                        <h3>Revenue Overview</h3>
+                        <div class="chart-tabs">
+                            <button class="chart-tab active" data-chart="revenue" data-type="line">Line</button>
+                            <button class="chart-tab" data-chart="revenue" data-type="bar">Bar</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-card glass-card animate-in" data-delay="500">
+                    <div class="card-header-custom">
+                        <h3>Traffic Sources</h3>
+                    </div>
+                    <div class="chart-container chart-container-sm">
+                        <canvas id="trafficChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Orders Table -->
+            <div class="table-card glass-card animate-in" data-delay="600">
+                <div class="card-header-custom">
+                    <h3>Recent Orders</h3>
+                    <div class="table-controls">
+                        <div class="search-table">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search orders..." id="orderSearch">
+                        </div>
+                        <button class="btn btn-sm btn-outline-custom" id="refreshOrders">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table" id="ordersTable">
+                        <thead>
+                            <tr>
+                                <th data-sort="id">Order ID <i class="fas fa-sort"></i></th>
+                                <th data-sort="customer">Customer <i class="fas fa-sort"></i></th>
+                                <th data-sort="product">Product <i class="fas fa-sort"></i></th>
+                                <th data-sort="amount">Amount <i class="fas fa-sort"></i></th>
+                                <th data-sort="date">Date <i class="fas fa-sort"></i></th>
+                                <th data-sort="status">Status <i class="fas fa-sort"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersBody"></tbody>
+                    </table>
+                </div>
+                <div class="table-footer">
+                    <span class="table-info" id="tableInfo">Showing 0 of 0 orders</span>
+                    <div class="pagination" id="ordersPagination"></div>
+                </div>
+            </div>
+
+            <!-- Users Table -->
+            <div class="table-card glass-card animate-in" data-delay="700">
+                <div class="card-header-custom">
+                    <h3>Active Users</h3>
+                    <div class="table-controls">
+                        <div class="search-table">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search users..." id="userSearch">
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table" id="usersTable">
+                        <thead>
+                            <tr>
+                                <th data-sort="id">ID <i class="fas fa-sort"></i></th>
+                                <th data-sort="name">Name <i class="fas fa-sort"></i></th>
+                                <th data-sort="email">Email <i class="fas fa-sort"></i></th>
+                                <th data-sort="role">Role <i class="fas fa-sort"></i></th>
+                                <th data-sort="status">Status <i class="fas fa-sort"></i></th>
+                                <th data-sort="joined">Joined <i class="fas fa-sort"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersBody"></tbody>
+                    </table>
+                </div>
+                <div class="table-footer">
+                    <span class="table-info" id="usersTableInfo">Showing 0 of 0 users</span>
+                    <div class="pagination" id="usersPagination"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders Page -->
+        <div class="page" id="page-orders">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Orders</h1>
+                    <p class="page-subtitle">Manage all customer orders</p>
+                </div>
+            </div>
+            <div class="table-card glass-card">
+                <div class="card-header-custom">
+                    <h3>All Orders</h3>
+                    <div class="table-controls">
+                        <div class="search-table">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search orders..." id="allOrderSearch">
+                        </div>
+                        <select class="form-select form-select-sm status-filter" id="statusFilter">
+                            <option value="all">All Status</option>
+                            <option value="completed">Completed</option>
+                            <option value="pending">Pending</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table" id="allOrdersTable">
+                        <thead>
+                            <tr>
+                                <th data-sort="id">Order ID <i class="fas fa-sort"></i></th>
+                                <th data-sort="customer">Customer <i class="fas fa-sort"></i></th>
+                                <th data-sort="product">Product <i class="fas fa-sort"></i></th>
+                                <th data-sort="amount">Amount <i class="fas fa-sort"></i></th>
+                                <th data-sort="date">Date <i class="fas fa-sort"></i></th>
+                                <th data-sort="status">Status <i class="fas fa-sort"></i></th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="allOrdersBody"></tbody>
+                    </table>
+                </div>
+                <div class="table-footer">
+                    <span class="table-info" id="allOrdersInfo">Showing 0 of 0 orders</span>
+                    <div class="pagination" id="allOrdersPagination"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Users Page -->
+        <div class="page" id="page-users">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Users</h1>
+                    <p class="page-subtitle">Manage user accounts</p>
+                </div>
+                <button class="btn btn-primary-custom"><i class="fas fa-plus"></i> Add User</button>
+            </div>
+            <div class="table-card glass-card">
+                <div class="card-header-custom">
+                    <h3>All Users</h3>
+                    <div class="table-controls">
+                        <div class="search-table">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Search users..." id="allUserSearch">
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table" id="allUsersTable">
+                        <thead>
+                            <tr>
+                                <th data-sort="id">ID <i class="fas fa-sort"></i></th>
+                                <th data-sort="name">Name <i class="fas fa-sort"></i></th>
+                                <th data-sort="email">Email <i class="fas fa-sort"></i></th>
+                                <th data-sort="role">Role <i class="fas fa-sort"></i></th>
+                                <th data-sort="status">Status <i class="fas fa-sort"></i></th>
+                                <th data-sort="joined">Joined <i class="fas fa-sort"></i></th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="allUsersBody"></tbody>
+                    </table>
+                </div>
+                <div class="table-footer">
+                    <span class="table-info" id="allUsersInfo">Showing 0 of 0 users</span>
+                    <div class="pagination" id="allUsersPagination"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products Page -->
+        <div class="page" id="page-products">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Products</h1>
+                    <p class="page-subtitle">Manage your product catalog</p>
+                </div>
+            </div>
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+
+        <!-- Analytics Page -->
+        <div class="page" id="page-analytics">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Analytics</h1>
+                    <p class="page-subtitle">Detailed performance metrics</p>
+                </div>
+            </div>
+            <div class="charts-grid">
+                <div class="chart-card glass-card">
+                    <div class="card-header-custom"><h3>Monthly Revenue</h3></div>
+                    <div class="chart-container"><canvas id="monthlyRevenueChart"></canvas></div>
+                </div>
+                <div class="chart-card glass-card">
+                    <div class="card-header-custom"><h3>User Growth</h3></div>
+                    <div class="chart-container"><canvas id="userGrowthChart"></canvas></div>
+                </div>
+            </div>
+            <div class="charts-grid">
+                <div class="chart-card glass-card">
+                    <div class="card-header-custom"><h3>Orders by Category</h3></div>
+                    <div class="chart-container chart-container-sm"><canvas id="categoryChart"></canvas></div>
+                </div>
+                <div class="chart-card glass-card">
+                    <div class="card-header-custom"><h3>Performance</h3></div>
+                    <div class="chart-container"><canvas id="performanceChart"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Page -->
+        <div class="page" id="page-settings">
+            <div class="page-header">
+                <div>
+                    <h1 class="page-title">Settings</h1>
+                    <p class="page-subtitle">Manage your account settings</p>
+                </div>
+            </div>
+            <div class="settings-grid">
+                <div class="settings-card glass-card">
+                    <h3>Profile Settings</h3>
+                    <div class="settings-form">
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" class="form-control glass-input" value="Nikesh Adhikari">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control glass-input" value="nikeshadhikari41@gmail.com">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Role</label>
+                            <input type="text" class="form-control glass-input" value="Administrator" disabled>
+                        </div>
+                        <button class="btn btn-primary-custom">Save Changes</button>
+                    </div>
+                </div>
+                <div class="settings-card glass-card">
+                    <h3>Preferences</h3>
+                    <div class="settings-option">
+                        <div>
+                            <span class="option-title">Dark Mode</span>
+                            <span class="option-desc">Toggle dark/light theme</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="darkModeSwitch" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="settings-option">
+                        <div>
+                            <span class="option-title">Email Notifications</span>
+                            <span class="option-desc">Receive email alerts</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="settings-option">
+                        <div>
+                            <span class="option-title">Two-Factor Auth</span>
+                            <span class="option-desc">Enable 2FA security</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Notification Panel -->
+    <div class="notification-panel" id="notifPanel">
+        <div class="notif-header">
+            <h4>Notifications</h4>
+            <button class="btn-close-notif" id="closeNotif"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="notif-list">
+            <div class="notif-item">
+                <div class="notif-icon"><i class="fas fa-shopping-cart"></i></div>
+                <div class="notif-content">
+                    <p>New order #1234 received</p>
+                    <span>2 minutes ago</span>
+                </div>
+            </div>
+            <div class="notif-item">
+                <div class="notif-icon"><i class="fas fa-user-plus"></i></div>
+                <div class="notif-content">
+                    <p>New user registered</p>
+                    <span>15 minutes ago</span>
+                </div>
+            </div>
+            <div class="notif-item">
+                <div class="notif-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                <div class="notif-content">
+                    <p>Server CPU usage at 90%</p>
+                    <span>1 hour ago</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

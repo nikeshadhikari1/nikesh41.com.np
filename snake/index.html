@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Game</title>
+    <link rel="icon" href="../image/logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1><i class="fas fa-snake"></i> Snake Game</h1>
+            <p class="subtitle">Eat food, grow longer, don't hit the walls!</p>
+        </div>
+
+        <!-- Score Board -->
+        <div class="scoreboard">
+            <div class="score-item">
+                <span class="score-label">Score</span>
+                <span class="score-value" id="score">0</span>
+            </div>
+            <div class="score-item">
+                <span class="score-label">High Score</span>
+                <span class="score-value highlight" id="highScore">0</span>
+            </div>
+            <div class="score-item">
+                <span class="score-label">Level</span>
+                <span class="score-value" id="level">1</span>
+            </div>
+        </div>
+
+        <!-- Game Canvas -->
+        <div class="canvas-wrapper">
+            <canvas id="gameCanvas" width="400" height="400"></canvas>
+            <div class="overlay" id="overlay">
+                <div class="overlay-content">
+                    <h2 id="overlayTitle">Snake Game</h2>
+                    <p id="overlayText">Press Space or tap Start to play</p>
+                    <button class="btn btn-start" id="startBtn">
+                        <i class="fas fa-play"></i> Start Game
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Controls -->
+        <div class="mobile-controls" id="mobileControls">
+            <div class="control-row">
+                <button class="control-btn" data-dir="up"><i class="fas fa-chevron-up"></i></button>
+            </div>
+            <div class="control-row">
+                <button class="control-btn" data-dir="left"><i class="fas fa-chevron-left"></i></button>
+                <button class="control-btn" data-dir="down"><i class="fas fa-chevron-down"></i></button>
+                <button class="control-btn" data-dir="right"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+        <!-- Speed Control -->
+        <div class="speed-control">
+            <span class="speed-label">Speed:</span>
+            <input type="range" id="speedSlider" min="1" max="5" value="2" class="speed-slider">
+            <span class="speed-value" id="speedValue">Normal</span>
+        </div>
+
+        <!-- Actions -->
+        <div class="actions">
+            <button class="btn btn-pause" id="pauseBtn" disabled>
+                <i class="fas fa-pause"></i> Pause
+            </button>
+            <button class="btn btn-restart" id="restartBtn">
+                <i class="fas fa-redo"></i> Restart
+            </button>
+        </div>
+
+        <!-- Keyboard Hints -->
+        <div class="hints">
+            <span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or Arrow Keys to move</span>
+            <span><kbd>Space</kbd> to pause</span>
+        </div>
+
+        <a href="../index.html#projects" class="back-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

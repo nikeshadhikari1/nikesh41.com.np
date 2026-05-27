@@ -3,85 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Calculator</title>
+    <link rel="icon" href="../image/logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body oncontextmenu="return false;">
-    <center>
-<div id="header">Calculator</div>
-    <div class="container" name="cont">
-        <input type="text" name="dis">
-        <div class="buttons">
-            <div class="but-row">
-                <button onclick="cleara()">C</button>
-                <button onclick="back()">Del</button>
-                <button onclick="moveCursorRight()">-></button>
-                <button onclick="moveCursorLeft()"><-</button>
-            </div>
-            <div class="but-row">
-                <button onclick="displaydata(7)">7</button>
-                <button onclick="displaydata(8)">8</button>
-                <button onclick="displaydata(9)">9</button>
-                <button onclick="displaydata('*')">*</button>
-            </div>
-            <div class="but-row">
-                <button onclick="displaydata(4)">4</button>
-                <button onclick="displaydata(5)">5</button>
-                <button onclick="displaydata(6)">6</button>
-                <button onclick="displaydata('-')">-</button>
-            </div>
-            <div class="but-row">
-                <button onclick="displaydata(1)">1</button>
-                <button onclick="displaydata(2)">2</button>
-                <button onclick="displaydata(3)">3</button>
-                <button onclick="displaydata('+')">+</button>
-            </div>
-            <div class="but-row">
-                <button onclick="change()">+/-</button>
-                <button onclick="displaydata(0)">0</button>
-                <button onclick="displaydata('.')">.</button>
-                <button onclick="result()">=</button>
+<body>
+    <div class="calculator-container">
+        <div class="calc-header">
+            <h1><i class="fas fa-calculator"></i> Calculator</h1>
+            <div class="mode-toggle">
+                <button class="mode-btn active" data-mode="basic">Basic</button>
+                <button class="mode-btn" data-mode="scientific">Scientific</button>
             </div>
         </div>
-            <div class="buttons1">
-                <div class="but-row">
-                    <button onclick="displaydata('()')">()</button>
-                    <button onclick="displaydata('sin')">sin</button>
-                    <button onclick="displaydata('cos')">cos</button>
-                    <button onclick="displaydata('/')">/</button>
-                </div>
-                <div class="but-row">
-                    <button onclick="displaydata('in')">in</button>
-                    <button onclick="displaydata('log')">log</button>
-                    <button onclick="displaydata('1/x')">1/x</button>
-                    <button onclick="displaydata('%')">%</button>
-                </div>
-                <div class="but-row">
-                    <button onclick="displaydata('e^x')">e^x</button>
-                    <button onclick="displaydata('x^2')">x^2</button>
-                    <button onclick="displaydata('x^y')">x^y</button>
-                    <button onclick="displaydata('-')">-</button>
-                </div>
-                <div class="but-row">
-                    <button onclick="displaydata('|x|')">|x|</button>
-                    <button onclick="displaydata('$')">$</button>
-                    <button onclick="displaydata('e')">e</button>
-                    <button onclick="displaydata('+')">+</button>
-                </div>
-                <div class="but-row">
-                    <button onclick="change()">+/-</button>
-                    <button onclick="displaydata('0')">0</button>
-                    <button onclick="displaydata('.')">.</button>
-                    <button onclick="result()">=</button>
-                </div>
+
+        <div class="calculator glass-card">
+            <!-- Display -->
+            <div class="display">
+                <div class="display-expression" id="expression"></div>
+                <div class="display-result" id="result">0</div>
+            </div>
+
+            <!-- Basic Buttons -->
+            <div class="btn-grid" id="basicGrid">
+                <button class="btn-func" data-action="clear">AC</button>
+                <button class="btn-func" data-action="backspace"><i class="fas fa-backspace"></i></button>
+                <button class="btn-func" data-action="percent">%</button>
+                <button class="btn-op" data-action="operator" data-value="/">/</button>
+
+                <button class="btn-num" data-action="number" data-value="7">7</button>
+                <button class="btn-num" data-action="number" data-value="8">8</button>
+                <button class="btn-num" data-action="number" data-value="9">9</button>
+                <button class="btn-op" data-action="operator" data-value="*">x</button>
+
+                <button class="btn-num" data-action="number" data-value="4">4</button>
+                <button class="btn-num" data-action="number" data-value="5">5</button>
+                <button class="btn-num" data-action="number" data-value="6">6</button>
+                <button class="btn-op" data-action="operator" data-value="-">-</button>
+
+                <button class="btn-num" data-action="number" data-value="1">1</button>
+                <button class="btn-num" data-action="number" data-value="2">2</button>
+                <button class="btn-num" data-action="number" data-value="3">3</button>
+                <button class="btn-op" data-action="operator" data-value="+">+</button>
+
+                <button class="btn-num" data-action="negate">+/-</button>
+                <button class="btn-num" data-action="number" data-value="0">0</button>
+                <button class="btn-num" data-action="decimal">.</button>
+                <button class="btn-equal" data-action="equals">=</button>
+            </div>
+
+            <!-- Scientific Buttons -->
+            <div class="btn-grid scientific" id="scientificGrid" style="display:none;">
+                <button class="btn-func" data-action="clear">AC</button>
+                <button class="btn-func" data-action="backspace"><i class="fas fa-backspace"></i></button>
+                <button class="btn-func" data-action="func" data-value="Math.PI">pi</button>
+                <button class="btn-func" data-action="func" data-value="Math.E">e</button>
+                <button class="btn-op" data-action="operator" data-value="/">/</button>
+
+                <button class="btn-func" data-action="func" data-value="Math.sin">sin</button>
+                <button class="btn-func" data-action="func" data-value="Math.cos">cos</button>
+                <button class="btn-func" data-action="func" data-value="Math.tan">tan</button>
+                <button class="btn-func" data-action="func" data-value="Math.log">ln</button>
+                <button class="btn-op" data-action="operator" data-value="*">x</button>
+
+                <button class="btn-func" data-action="func" data-value="Math.asin">asin</button>
+                <button class="btn-func" data-action="func" data-value="Math.acos">acos</button>
+                <button class="btn-func" data-action="func" data-value="Math.atan">atan</button>
+                <button class="btn-func" data-action="func" data-value="Math.log10">log</button>
+                <button class="btn-op" data-action="operator" data-value="-">-</button>
+
+                <button class="btn-func" data-action="func" data-value="Math.sqrt">sqrt</button>
+                <button class="btn-func" data-action="func" data-value="Math.pow">x^y</button>
+                <button class="btn-func" data-action="func" data-value="Math.abs">|x|</button>
+                <button class="btn-func" data-action="percent">%</button>
+                <button class="btn-op" data-action="operator" data-value="+">+</button>
+
+                <button class="btn-num" data-action="number" data-value="7">7</button>
+                <button class="btn-num" data-action="number" data-value="8">8</button>
+                <button class="btn-num" data-action="number" data-value="9">9</button>
+                <button class="btn-func" data-action="func" data-value="Math.pow10">10^x</button>
+                <button class="btn-func" data-action="func" data-value="factorial">x!</button>
+
+                <button class="btn-num" data-action="number" data-value="4">4</button>
+                <button class="btn-num" data-action="number" data-value="5">5</button>
+                <button class="btn-num" data-action="number" data-value="6">6</button>
+                <button class="btn-func" data-action="openParen">(</button>
+                <button class="btn-func" data-action="closeParen">)</button>
+
+                <button class="btn-num" data-action="number" data-value="1">1</button>
+                <button class="btn-num" data-action="number" data-value="2">2</button>
+                <button class="btn-num" data-action="number" data-value="3">3</button>
+                <button class="btn-num" data-action="number" data-value="0">0</button>
+                <button class="btn-equal" data-action="equals">=</button>
+
+                <button class="btn-num" data-action="negate">+/-</button>
+                <button class="btn-num" data-action="decimal">.</button>
             </div>
         </div>
+
+        <!-- History -->
+        <div class="history glass-card">
+            <div class="history-header">
+                <h3><i class="fas fa-history"></i> History</h3>
+                <button class="clear-history" id="clearHistory">Clear</button>
+            </div>
+            <div class="history-list" id="historyList">
+                <p class="history-empty">No calculations yet</p>
+            </div>
+        </div>
+
+        <a href="../index.html#projects" class="back-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
     </div>
-</div>
-<div id="footer">
-    Created by: Nikesh Adhikari
-</div>
-</center>
+
     <script src="script.js"></script>
 </body>
 </html>

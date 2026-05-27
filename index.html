@@ -3,244 +3,642 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nikesh-Portfolio</title>
+    <title>Nikesh — Creative Developer & Designer</title>
+    <link rel="icon" href="image/logo.png" type="image/png">
     <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/2142f3c130.js" crossorigin="anonymous"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4119195557979359"
-     crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
-<body oncontextmenu="return false;">
-    <div id="header">
-        <div class="container">
-            <nav>
-                <img src="image/logo.png" class="logo">
-                <ul id="sidemenu">
-                    <li><a href="#header">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Service</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
-                </ul>
-                <i class="fa-solid fa-bars"onclick="openmenu()"></i>
-            </nav>
-            <div class="header-text">
-                <p>WEB Designer</p>
-                <h1>Hi, I'm <span>Nikesh</span><br>Adhikari From Nepal</h1>
-            </div>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-inner">
+            <div class="loader-bar"></div>
+            <span class="loader-text">Loading Portfolio</span>
+            <span class="loader-percent" id="loaderPercent">0%</span>
         </div>
     </div>
-    <!-- <ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-4119195557979359"
-     data-ad-slot="6315334746"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins> -->
 
-    <!-- -----------about----------- -->
-    <div id="about">
-        <div class="container">
-            <div class="row">
-                <div class="about-col-1">
-                    <img src="image/user.png">
+    <!-- Three.js Background -->
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <a href="#" class="nav-logo" data-magnetic>
+            <span class="logo-bracket">&lt;</span>N<span class="logo-dot">.</span>A<span class="logo-bracket">/&gt;</span>
+        </a>
+        <div class="nav-links">
+            <a href="#home" class="nav-link active" data-section="home" data-magnetic>Home</a>
+            <a href="#about" class="nav-link" data-section="about" data-magnetic>About</a>
+            <a href="#skills-section" class="nav-link" data-section="skills" data-magnetic>Skills</a>
+            <a href="#projects" class="nav-link" data-section="projects" data-magnetic>Projects</a>
+            <a href="#experience" class="nav-link" data-section="experience" data-magnetic>Experience</a>
+            <a href="#contact" class="nav-link" data-section="contact" data-magnetic>Contact</a>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#home" class="mobile-link">Home</a>
+        <a href="#about" class="mobile-link">About</a>
+        <a href="#skills-section" class="mobile-link">Skills</a>
+        <a href="#projects" class="mobile-link">Projects</a>
+        <a href="#experience" class="mobile-link">Experience</a>
+        <a href="#contact" class="mobile-link">Contact</a>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section class="section hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge" data-reveal>
+                <span class="badge-dot"></span>
+                Available for freelance work
+            </div>
+            <h1 class="hero-title" data-reveal>
+                <span class="title-line">Hi, I'm <span class="highlight">Nikesh</span></span>
+                <span class="title-line">Creative <span class="outline-text">Developer</span></span>
+                <span class="title-line">&amp; <span class="highlight">Designer</span></span>
+            </h1>
+            <p class="hero-desc" data-reveal>
+                I craft digital experiences through clean code and thoughtful design.
+                Specializing in web development, Python/Django backends, and modern UI/UX.
+            </p>
+            <div class="hero-actions" data-reveal>
+                <a href="#projects" class="btn btn-primary" data-magnetic>
+                    <span>View My Work</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#contact" class="btn btn-ghost" data-magnetic>
+                    <span>Let's Talk</span>
+                </a>
+            </div>
+            <div class="hero-stats" data-reveal>
+                <div class="hero-stat">
+                    <span class="stat-num" data-count="10">0</span><span class="stat-plus">+</span>
+                    <span class="stat-label">Projects</span>
                 </div>
-                <div class="about-col-2">
-                    <h1 class="sub-title">About Me</h1>
-                    <p>write about my self</p>
-                    
-                    <div class="tab-title">
-                        <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
-                        <p class="tab-links"onclick="opentab('experience')">Experience</p>
-                        <p class="tab-links"onclick="opentab('education')">Education</p>
+                <div class="hero-stat">
+                    <span class="stat-num" data-count="3">0</span><span class="stat-plus">+</span>
+                    <span class="stat-label">Years Exp.</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="stat-num" data-count="5">0</span><span class="stat-plus">+</span>
+                    <span class="stat-label">Technologies</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <canvas id="heroGlobe"></canvas>
+        </div>
+        <div class="scroll-indicator" data-reveal>
+            <div class="scroll-line"><div class="scroll-dot"></div></div>
+            <span>Scroll Down</span>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="section-header" data-reveal>
+                <span class="section-tag">01 / About</span>
+                <h2 class="section-title">Turning ideas into<br><span class="highlight">digital reality</span></h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-image" data-reveal>
+                    <div class="image-wrapper" data-tilt>
+                        <img src="image/user.png" alt="Nikesh Adhikari">
+                        <div class="image-border"></div>
+                    </div>
+                    <div class="about-badge">
+                        <i class="fas fa-code"></i>
+                        <span>Code Enthusiast</span>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <p class="about-intro" data-reveal>
+                        I'm a passionate web developer and designer based in Nepal, with 3+ years of experience
+                        building modern web applications and learning new technologies every day.
+                    </p>
+                    <p class="about-body" data-reveal>
+                        My journey started with curiosity about how things work on the web. Today, I specialize in
+                        creating responsive, accessible, and visually appealing applications. I believe great software
+                        is born at the intersection of beautiful design and clean architecture.
+                    </p>
+
+                    <!-- Tabbed Section (Preserved from original) -->
+                    <div class="tab-title" data-reveal>
+                        <p class="tab-links active-link" data-tab="skills">Skills</p>
+                        <p class="tab-links" data-tab="experience">Experience</p>
+                        <p class="tab-links" data-tab="education">Education</p>
                     </div>
                     <div class="tab-contents active-tab" id="skills">
                         <ul>
-                            <li><span>UI/UX</span><br>Designing Web interface</li>
-                            <li><span>Frontend</span><br>HTML, CSS, JAVA SCRIPTS</li>
-                            <li><span>Backend</span><br>Python FrameWorks(django), PHP, CSV Files</li>
-                            <li><span>Others Language</span><br>C, C++</li>
+                            <li><span>UI/UX</span> Designing Web interface</li>
+                            <li><span>Frontend</span> HTML, CSS, JavaScript</li>
+                            <li><span>Backend</span> Python/Django, PHP, CSV Files</li>
+                            <li><span>Mobile</span> Flutter, Dart</li>
+                            <li><span>Others</span> C, C++</li>
                         </ul>
                     </div>
                     <div class="tab-contents" id="experience">
                         <ul>
-                            <li><span>Currently</span><br>Figma</li>
-                            <li><span>2023</span><br>Python FrameWorks(django)</li>
-                            <li><span>2024 - Current</span><br>HTML, CSS, JAVA SCRIPTS, PHP, CSV Files</li>
-                            <li><span>2023 -2024</span><br>C, C++</li>
+                            <li><span>From 2025</span> Figma</li>
+                            <li><span>From 2024</span> HTML, CSS, JavaScript, PHP</li>
+                            <li><span>From 2024</span> Flutter</li>
+                            <li><span>From 2023</span> Python/Django Framework</li>
+                            <li><span>From 2023</span> C, C++</li>
                         </ul>
                     </div>
                     <div class="tab-contents" id="education">
                         <ul>
-                            <li><span>2023 - Current</span><br>Bachelor at Sukuna Multiple Campus</li>
-                            <li><span>2022</span><br>+2 at Vishwa Adarsha Secondary School</li>
-                            <li><span>2020</span><br>Schooling at Indrapur Namuna Ma.Vi</li>
+                            <li><span>From 2023</span> Bachelor at Sukuna Multiple Campus</li>
+                            <li><span>2022</span> +2 at Vishwa Adarsha Secondary School</li>
+                            <li><span>2020</span> Schooling at Indrapur Namuna Ma.Vi</li>
                         </ul>
                     </div>
+
+                    <!-- Info Grid -->
+                    <div class="about-info" data-reveal>
+                        <div class="info-item">
+                            <span class="info-label">Name</span>
+                            <span class="info-value">Nikesh Adhikari</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Location</span>
+                            <span class="info-value">Nepal</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Experience</span>
+                            <span class="info-value">3+ Years</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Availability</span>
+                            <span class="info-value accent">Open to Work</span>
+                        </div>
+                    </div>
+                    <a href="image/NikeshAdhikari-CV.pdf" download class="btn btn-primary" data-reveal data-magnetic>
+                        <span>Download CV</span>
+                        <i class="fas fa-download"></i>
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- --------------------services----------------- -->
-    <div id="services">
+    <!-- ===== SKILLS ===== -->
+    <section class="section skills" id="skills-section">
         <div class="container">
-            <h1 class="sub-title">My Services</h1>
-            <div class="services-list">
-                <div>
-                    <i class="fa-solid fa-code"></i>
-                    <h2>Web Design</h2>
-                    <p>Learn about web designing from me.</p>
-                    <a href="#">Learn more</a>
+            <div class="section-header" data-reveal>
+                <span class="section-tag">02 / Skills</span>
+                <h2 class="section-title">My tech<br><span class="highlight">arsenal</span></h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category" data-reveal>
+                    <h3 class="category-title"><i class="fas fa-layer-group"></i> Frontend</h3>
+                    <div class="skill-items">
+                        <div class="skill-item" data-tilt>
+                            <div class="skill-icon"><i class="fab fa-html5"></i></div>
+                            <span>HTML5</span>
+                            <div class="skill-level" data-level="90"></div>
+                        </div>
+                        <div class="skill-item" data-tilt>
+                            <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
+                            <span>CSS3</span>
+                            <div class="skill-level" data-level="85"></div>
+                        </div>
+                        <div class="skill-item" data-tilt>
+                            <div class="skill-icon"><i class="fab fa-js"></i></div>
+                            <span>JavaScript</span>
+                            <div class="skill-level" data-level="80"></div>
+                        </div>
+                        <div class="skill-item" data-tilt>
+                            <div class="skill-icon"><i class="fab fa-figma"></i></div>
+                            <span>Figma</span>
+                            <div class="skill-level" data-level="75"></div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <i class="fa-solid fa-code"></i>
-                    <h2>C, C++ </h2>
-                    <p>Learn about C and C++ from me.</p>
-                    <a href="#">Learn more</a>
+                <div class="skill-category" data-reveal>
+                    <h3 class="category-title"><i class="fas fa-server"></i> Backend</h3>
+                    <div class="skill-items">
+                        <div class="skill-item" data-tilt>
+                            <div class="skill-icon"><i class="fab fa-python"></i></div>
+                            <span>Python</span>
+                            <div class="skill-level" data-level="82"></div>
+                        </div>
+                        <div class="skill-item" data-tilt>
+                            <div class="skill-icon"><i class="fab fa-php"></i></div>
+                            <span>PHP</span>
+                            <div class="skill-level" data-level="70"></div>
+                        </div>
+                        <div class="skill-item" data-tilt>
+                            <div class="skill-icon"><i class="fas fa-fire"></i></div>
+                            <span>Django</span>
+                            <div class="skill-level" data-level="78"></div>
+                        </div>
+                        <div class="skill-item" data-tilt>
+                            <div class="skill-icon"><i class="fas fa-file-csv"></i></div>
+                            <span>CSV Processing</span>
+                            <div class="skill-level" data-level="75"></div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <i class="fa-brands fa-python"></i>
-                    <h2>Python</h2>
-                    <p>Learn about python framework(django) from me.</p>
-                    <a href="#">Learn more</a>
+                <div class="skill-category" data-reveal>
+                    <h3 class="category-title"><i class="fas fa-mobile-alt"></i> Mobile</h3>
+                    <div class="skill-items">
+                        <div class="skill-item" data-tilt>
+                            <div class="skill-icon"><i class="fas fa-mobile-alt"></i></div>
+                            <span>Flutter</span>
+                            <div class="skill-level" data-level="65"></div>
+                        </div>
+                        <div class="skill-item" data-tilt>
+                            <div class="skill-icon"><i class="fas fa-code"></i></div>
+                            <span>Dart</span>
+                            <div class="skill-level" data-level="60"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category" data-reveal>
+                    <h3 class="category-title"><i class="fas fa-tools"></i> Programming</h3>
+                    <div class="skill-items">
+                        <div class="skill-item" data-tilt>
+                            <div class="skill-icon"><i class="fas fa-code"></i></div>
+                            <span>C</span>
+                            <div class="skill-level" data-level="75"></div>
+                        </div>
+                        <div class="skill-item" data-tilt>
+                            <div class="skill-icon"><i class="fas fa-code"></i></div>
+                            <span>C++</span>
+                            <div class="skill-level" data-level="72"></div>
+                        </div>
+                        <div class="skill-item" data-tilt>
+                            <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
+                            <span>Git</span>
+                            <div class="skill-level" data-level="70"></div>
+                        </div>
+                        <div class="skill-item" data-tilt>
+                            <div class="skill-icon"><i class="fas fa-database"></i></div>
+                            <span>CSV / Data</span>
+                            <div class="skill-level" data-level="68"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- --------------------portfolio----------------- -->
-    <div id="portfolio">
+    <!-- ===== PROJECTS ===== -->
+    <section class="section projects" id="projects">
         <div class="container">
-            <h1 class="sub-title">My Work</h1>
-            <div class="work-list">
-                 <div class="work">
-                    <img src="image/website.png" alt="">
-                    <div class="layer">
-                        <h3>E-commerce Website</h3>
-                        <p>An ecommerce website design with responsive.</p>
-                        <a href="https://gripfitness.dephost.eu.org/"><i class="fa-solid fa-up-right-from-square"></i></a>
-                    </div>
-                </div>
-                <div class="work">
-                    <img src="quiz/1.png" alt="">
-                    <div class="layer">
-                        <h3>QUIZ</h3>
-                        <p>This Quiz helps you to recall question and trains your brain.</p>
-                        <a href="quiz/index.html"><i class="fa-solid fa-up-right-from-square"></i></a>
-                    </div>
-                </div>
-                <div class="work">
-                    <img src="calculator/2.png" alt="">
-                    <div class="layer">
-                        <h3>CALCULATOR</h3>
-                        <p>This calculator helps you to calculate mathematical problems.</p>
-                        <a href="calculator/index.html"><i class="fa-solid fa-up-right-from-square"></i></a>
-                    </div>
-                </div>
-                <div class="work">
-                    <img src="image/3.png" alt="">
-                    <div class="layer">
-                        <h3>Marksheet</h3>
-                        <p>This sheet helps you to store students detail and show the marksheet of an student.</p>
-                        <a href="https://nikeshadhikari.000webhostapp.com/"><i class="fa-solid fa-up-right-from-square"></i></a>
-                    </div>
-                </div>
+            <div class="section-header" data-reveal>
+                <span class="section-tag">03 / Projects</span>
+                <h2 class="section-title">Selected<br><span class="highlight">works</span></h2>
             </div>
-            <a href="seemore.html" class="btn">See more</a>
-        </div>
-    </div>
+            <div class="project-filter" data-reveal>
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="live">Live Demos</button>
+                <button class="filter-btn" data-filter="web">Web Design</button>
+                <button class="filter-btn" data-filter="app">Applications</button>
+            </div>
 
-    <!-- --------------contact-------------- -->
-    <div id="contact">
+            <div class="projects-grid">
+                <!-- LIVE: Quiz App -->
+                <article class="project-card featured" data-reveal data-tilt data-tag="live">
+                    <div class="project-image">
+                        <div style="width:100%;height:100%;background:linear-gradient(135deg,#6c63ff,#a855f7);display:flex;align-items:center;justify-content:center;">
+                            <i class="fas fa-brain" style="font-size:64px;color:white;"></i>
+                        </div>
+                        <div class="project-live-badge"><span class="live-dot"></span> Live Demo</div>
+                        <div class="project-overlay">
+                            <a href="quiz/index.html" class="project-link" data-magnetic><i class="fas fa-play"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Quiz App</span>
+                        <h3 class="project-title">Brain Training Quiz</h3>
+                        <p class="project-desc">An interactive quiz that helps you recall questions and trains your brain. Features multiple categories with instant feedback.</p>
+                        <div class="project-tech">
+                            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                        </div>
+                        <a href="quiz/index.html" class="project-cta">
+                            Take the Quiz <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- LIVE: Calculator -->
+                <article class="project-card" data-reveal data-tilt data-tag="live app">
+                    <div class="project-image">
+                        <div style="width:100%;height:100%;background:linear-gradient(135deg,#00d4aa,#0ea5e9);display:flex;align-items:center;justify-content:center;">
+                            <i class="fas fa-calculator" style="font-size:64px;color:white;"></i>
+                        </div>
+                        <div class="project-live-badge"><span class="live-dot"></span> Live Demo</div>
+                        <div class="project-overlay">
+                            <a href="calculator/index.html" class="project-link" data-magnetic><i class="fas fa-play"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Interactive App</span>
+                        <h3 class="project-title">Mathematical Calculator</h3>
+                        <p class="project-desc">A calculator that helps you solve mathematical problems with a clean, responsive interface.</p>
+                        <div class="project-tech">
+                            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                        </div>
+                        <a href="calculator/index.html" class="project-cta">
+                            Try It Live <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- E-Commerce Website -->
+                <article class="project-card" data-reveal data-tilt data-tag="web">
+                    <div class="project-image">
+                        <div style="width:100%;height:100%;background:linear-gradient(135deg,#f59e0b,#ef4444);display:flex;align-items:center;justify-content:center;">
+                            <i class="fas fa-shopping-cart" style="font-size:64px;color:white;"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <a href="https://gripfitness.page.gd/" class="project-link" data-magnetic><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Web Design</span>
+                        <h3 class="project-title">E-commerce Website</h3>
+                        <p class="project-desc">A responsive ecommerce website design with modern layout and user-friendly interface.</p>
+                        <div class="project-tech">
+                            <span>HTML</span><span>CSS</span><span>Responsive</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Marksheet System -->
+                <article class="project-card" data-reveal data-tilt data-tag="app">
+                    <div class="project-image">
+                        <div style="width:100%;height:100%;background:linear-gradient(135deg,#8b5cf6,#ec4899);display:flex;align-items:center;justify-content:center;">
+                            <i class="fas fa-file-invoice" style="font-size:64px;color:white;"></i>
+                        </div>
+                        <div class="project-overlay">
+                            <a href="https://nikeshadhikari.000webhostapp.com/" class="project-link" data-magnetic><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Application</span>
+                        <h3 class="project-title">Marksheet System</h3>
+                        <p class="project-desc">A system to store student details and generate marksheets with an easy-to-use interface.</p>
+                        <div class="project-tech">
+                            <span>HTML</span><span>CSS</span><span>PHP</span><span>CSV</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Admin Dashboard -->
+                <article class="project-card featured" data-reveal data-tilt data-tag="live app">
+                    <div class="project-image">
+                        <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a1a2e,#16213e);display:flex;align-items:center;justify-content:center;">
+                            <i class="fas fa-th-large" style="font-size:64px;color:#6c63ff;"></i>
+                        </div>
+                        <div class="project-live-badge"><span class="live-dot"></span> Live Demo</div>
+                        <div class="project-overlay">
+                            <a href="admin-dashboard/index.html" class="project-link" data-magnetic><i class="fas fa-play"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Full Stack App</span>
+                        <h3 class="project-title">Admin Dashboard</h3>
+                        <p class="project-desc">A complete admin dashboard with revenue cards, order/user tables with pagination, search & sorting, Chart.js analytics, dark mode toggle, glassmorphism UI, and smooth animations. Built with Bootstrap 5.</p>
+                        <div class="project-tech">
+                            <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Bootstrap 5</span><span>Chart.js</span>
+                        </div>
+                        <a href="admin-dashboard/index.html" class="project-cta">
+                            View Dashboard <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Tic-Tac-Toe -->
+                <article class="project-card" data-reveal data-tilt data-tag="live">
+                    <div class="project-image">
+                        <div style="width:100%;height:100%;background:linear-gradient(135deg,#0a0a0f,#111118);display:flex;align-items:center;justify-content:center;gap:8px;">
+                            <span style="font-size:48px;font-weight:800;color:#6c63ff;">X</span>
+                            <span style="font-size:48px;font-weight:800;color:#00d4aa;">O</span>
+                        </div>
+                        <div class="project-live-badge"><span class="live-dot"></span> Live Demo</div>
+                        <div class="project-overlay">
+                            <a href="tictactoe/index.html" class="project-link" data-magnetic><i class="fas fa-play"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Game</span>
+                        <h3 class="project-title">Tic-Tac-Toe</h3>
+                        <p class="project-desc">Classic tic-tac-toe with AI opponent (easy/medium/hard), 2-player mode, score tracking, and glassmorphism dark theme UI.</p>
+                        <div class="project-tech">
+                            <span>HTML</span><span>CSS</span><span>JavaScript</span>
+                        </div>
+                        <a href="tictactoe/index.html" class="project-cta">
+                            Play Now <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Snake Game -->
+                <article class="project-card" data-reveal data-tilt data-tag="live">
+                    <div class="project-image">
+                        <div style="width:100%;height:100%;background:linear-gradient(135deg,#0a0a0f,#111118);display:flex;align-items:center;justify-content:center;">
+                            <i class="fas fa-gamepad" style="font-size:48px;color:#00d4aa;"></i>
+                        </div>
+                        <div class="project-live-badge"><span class="live-dot"></span> Live Demo</div>
+                        <div class="project-overlay">
+                            <a href="snake/index.html" class="project-link" data-magnetic><i class="fas fa-play"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <span class="project-category">Game</span>
+                        <h3 class="project-title">Snake Game</h3>
+                        <p class="project-desc">Classic snake game with score tracking, high score persistence, speed levels, mobile touch controls, and smooth canvas rendering.</p>
+                        <div class="project-tech">
+                            <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Canvas</span>
+                        </div>
+                        <a href="snake/index.html" class="project-cta">
+                            Play Now <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EXPERIENCE ===== -->
+    <section class="section experience" id="experience">
         <div class="container">
-            <div class="row">
-                <div class="contact-left">
-                    <h1 class="sub-title">Contact Me</h1>
-                    <p><i class="fa-solid fa-paper-plane"></i> nikeshadhikari41@gmail.com</p>
-                    <p><i class="fa-solid fa-square-phone-flip"></i> 98**********</p>
-                    <div class="social-icons">
-                        <a href="https://www.facebook.com"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://github.com/nikeshadhikari1"><i class="fa-brands fa-square-github"></i></a>
-                        <a href=""><i class="fa-brands fa-linkedin"></i></a>
+            <div class="section-header" data-reveal>
+                <span class="section-tag">04 / Experience</span>
+                <h2 class="section-title">My learning<br><span class="highlight">journey</span></h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item" data-reveal>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content" data-tilt>
+                        <span class="timeline-date">From 2023</span>
+                        <h3 class="timeline-title">C & C++ Programming</h3>
+                        <span class="timeline-company"><i class="fas fa-terminal"></i> Programming Fundamentals</span>
+                        <p class="timeline-desc">Built a strong foundation in programming with C and C++, learning data structures and algorithms.</p>
+                        <div class="timeline-tech">
+                            <span>C</span><span>C++</span><span>DSA</span>
+                        </div>
                     </div>
-                    <a href="image/NikeshAdhikari-CV.pdf" download class="btn btn2">Download CV</a>
                 </div>
-                <div class="contact-right">
-                    <form name="submit-to-google-sheet">
-                        <input type="text" name="Name" placeholder="Your Name" required>
-                        <input type="email" name="Email" placeholder="Your Email" required>
-                        <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
-                        <button type="submit" class="btn btn2">Submit</button>
-                    </form>
-                    <span id="msg"></span>
+                <div class="timeline-item" data-reveal>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content" data-tilt>
+                        <span class="timeline-date">From 2023</span>
+                        <h3 class="timeline-title">Python & Django</h3>
+                        <span class="timeline-company"><i class="fab fa-python"></i> Backend Development</span>
+                        <p class="timeline-desc">Learned Python programming and the Django framework for building robust backend systems.</p>
+                        <div class="timeline-tech">
+                            <span>Python</span><span>Django</span><span>Backend</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item" data-reveal>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content" data-tilt>
+                        <span class="timeline-date">From 2024</span>
+                        <h3 class="timeline-title">Web Development</h3>
+                        <span class="timeline-company"><i class="fas fa-code"></i> Full Stack</span>
+                        <p class="timeline-desc">Building modern web applications with HTML, CSS, JavaScript, PHP and CSV-based data processing.</p>
+                        <div class="timeline-tech">
+                            <span>HTML</span><span>CSS</span><span>JavaScript</span><span>PHP</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item" data-reveal>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content" data-tilt>
+                        <span class="timeline-date">From 2024</span>
+                        <h3 class="timeline-title">Flutter Development</h3>
+                        <span class="timeline-company"><i class="fas fa-mobile-alt"></i> Mobile Development</span>
+                        <p class="timeline-desc">Learning Flutter and Dart for building cross-platform mobile applications with beautiful UIs.</p>
+                        <div class="timeline-tech">
+                            <span>Flutter</span><span>Dart</span><span>Mobile</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item" data-reveal>
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content" data-tilt>
+                        <span class="timeline-date">From 2025</span>
+                        <h3 class="timeline-title">Figma</h3>
+                        <span class="timeline-company"><i class="fas fa-paint-brush"></i> UI/UX Design</span>
+                        <p class="timeline-desc">Currently learning and exploring Figma for designing modern web interfaces and prototypes.</p>
+                        <div class="timeline-tech">
+                            <span>Figma</span><span>UI Design</span><span>Prototyping</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="copyright">
-            <p>Copyright © <i>Nikesh Adhikari</i>.</p>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-header center" data-reveal>
+                <span class="section-tag">05 / Contact</span>
+                <h2 class="section-title">Let's build something<br><span class="highlight">amazing together</span></h2>
+                <p class="section-desc">Got a project in mind? I'd love to hear about it. Drop me a message and let's create something extraordinary.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info-col">
+                    <div class="contact-card" data-reveal data-tilt>
+                        <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h4>Email Me</h4>
+                            <p>nikeshadhikari41@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-card" data-reveal data-tilt>
+                        <div class="contact-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Nepal</p>
+                        </div>
+                    </div>
+                    <div class="contact-card" data-reveal data-tilt>
+                        <div class="contact-card-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div>
+                            <h4>Call Me</h4>
+                            <p>+977 9805300208</p>
+                        </div>
+                    </div>
+                    <div class="contact-socials" data-reveal>
+                        <a href="https://github.com/nikeshadhikari1" class="social-btn" data-magnetic><i class="fab fa-github"></i></a>
+                        <a href="https://www.facebook.com" class="social-btn" data-magnetic><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com" class="social-btn" data-magnetic><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-btn" data-magnetic><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm" data-reveal>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <input type="text" name="Name" id="name" required placeholder=" ">
+                            <label for="name">Your Name</label>
+                            <div class="field-line"></div>
+                        </div>
+                        <div class="form-field">
+                            <input type="email" name="Email" id="email" required placeholder=" ">
+                            <label for="email">Your Email</label>
+                            <div class="field-line"></div>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <input type="text" name="Subject" id="subject" placeholder=" ">
+                        <label for="subject">Subject</label>
+                        <div class="field-line"></div>
+                    </div>
+                    <div class="form-field">
+                        <textarea name="Message" id="message" rows="5" required placeholder=" "></textarea>
+                        <label for="message">Your Message</label>
+                        <div class="field-line"></div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" data-magnetic>
+                        <span>Send Message</span>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                    <span id="formMsg"></span>
+                </form>
+            </div>
         </div>
-    </div>
-    <div>
-        <button onclick="scrollToTop()" id="scrollUpBtn" title="Go to top">
-            <i class="fa-solid fa-arrow-up"></i>
-        </button>
-    </div>
-    <script>
-        var tablinks = document.getElementsByClassName("tab-links");
-        var tabcontents = document.getElementsByClassName("tab-contents");
-        function opentab(tabname){
-            for(tablink of tablinks){
-                tablink.classList.remove("active-link");
-            }
-            for(tabcontent of tabcontents){
-                tabcontent.classList.remove("active-tab");
-            }
-            event.currentTarget.classList.add("active-link");
-            document.getElementById(tabname).classList.add("active-tab");
-        }
+    </section>
 
-        var sidemeu = document.getElementById("sidemenu");
-        function openmenu(){
-            sidemeu.style.right = "0";
-        }
-        function closemenu(){
-            sidemeu.style.right = "-200px";
-        }
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-left">
+                <span class="nav-logo">
+                    <span class="logo-bracket">&lt;</span>N<span class="logo-dot">.</span>A<span class="logo-bracket">/&gt;</span>
+                </span>
+                <p>Building digital experiences that matter.</p>
+            </div>
+            <div class="footer-right">
+                <p>&copy; 2026 Nikesh Adhikari. All rights reserved.</p>
+                <p class="footer-note">Designed & Built with <span class="highlight">&hearts;</span></p>
+            </div>
+        </div>
+    </footer>
 
-        function scrollToTop() {
-            window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-            });
-        }
+    <!-- Scroll to Top -->
+    <button id="scrollUpBtn" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
-    </script>
-    <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycby2DyFAzAxBUaTSNuOPdzriNZxtUWw7QHFCEVmQntWLbqCn3C7cfN531m0fDRsAUWn4/exec'
-        
-        const form = document.forms['submit-to-google-sheet']
-        const msg = document.getElementById("msg")
-
-        form.addEventListener('submit', e => {
-            e.preventDefault()
-            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => {
-                msg.innerHTML = "Message sent successfully"
-                setTimeout(function(){
-                    msg.innerHTML = ""
-                }, 5000)
-                form.reset()
-            })
-            .catch(error => console.error('Error!', error.message))
-        })
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-

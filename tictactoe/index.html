@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe</title>
+    <link rel="icon" href="../image/logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1><span class="x-color">Tic</span>-<span class="o-color">Tac</span>-Toe</h1>
+            <p class="subtitle">Challenge the AI or play with a friend</p>
+        </div>
+
+        <!-- Mode Selection -->
+        <div class="mode-selection" id="modeSelection">
+            <button class="mode-btn active" data-mode="ai">
+                <i class="fas fa-robot"></i>
+                <span>vs Computer</span>
+            </button>
+            <button class="mode-btn" data-mode="pvp">
+                <i class="fas fa-user-friends"></i>
+                <span>2 Players</span>
+            </button>
+        </div>
+
+        <!-- Difficulty Selection -->
+        <div class="difficulty-selection" id="difficultySelection">
+            <span class="diff-label">Difficulty:</span>
+            <button class="diff-btn active" data-diff="easy">Easy</button>
+            <button class="diff-btn" data-diff="medium">Medium</button>
+            <button class="diff-btn" data-diff="hard">Hard</button>
+        </div>
+
+        <!-- Score Board -->
+        <div class="scoreboard">
+            <div class="score-item x-score">
+                <span class="score-icon">X</span>
+                <span class="score-name" id="player1Name">You</span>
+                <span class="score-value" id="scoreX">0</span>
+            </div>
+            <div class="score-item draw-score">
+                <span class="score-icon"><i class="fas fa-equals"></i></span>
+                <span class="score-name">Draw</span>
+                <span class="score-value" id="scoreDraw">0</span>
+            </div>
+            <div class="score-item o-score">
+                <span class="score-icon">O</span>
+                <span class="score-name" id="player2Name">AI</span>
+                <span class="score-value" id="scoreO">0</span>
+            </div>
+        </div>
+
+        <!-- Game Board -->
+        <div class="board-wrapper">
+            <div class="board" id="board">
+                <div class="cell" data-index="0"></div>
+                <div class="cell" data-index="1"></div>
+                <div class="cell" data-index="2"></div>
+                <div class="cell" data-index="3"></div>
+                <div class="cell" data-index="4"></div>
+                <div class="cell" data-index="5"></div>
+                <div class="cell" data-index="6"></div>
+                <div class="cell" data-index="7"></div>
+                <div class="cell" data-index="8"></div>
+            </div>
+            <div class="win-line" id="winLine"></div>
+        </div>
+
+        <!-- Status -->
+        <div class="status" id="status">Your turn (X)</div>
+
+        <!-- Actions -->
+        <div class="actions">
+            <button class="btn btn-restart" id="restartBtn">
+                <i class="fas fa-redo"></i> New Game
+            </button>
+            <button class="btn btn-reset" id="resetBtn">
+                <i class="fas fa-trash"></i> Reset Scores
+            </button>
+        </div>
+
+        <a href="../index.html#projects" class="back-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
